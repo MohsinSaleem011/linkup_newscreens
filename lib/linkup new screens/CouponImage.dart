@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
 import 'SponsorImage.dart';
 
 class CouponImage extends StatelessWidget {
@@ -124,28 +121,28 @@ class CouponImage extends StatelessWidget {
             ),
             smalltext('Live'),
             SizedBox(
-                    height: 25.h,
-                  ),
-                  Center(
-                    child: Container(
-                      height: 30.h,
-                      width: 250.w,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 56, 170, 215),
-                          borderRadius: BorderRadius.circular(4)),
-                      child: TextButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_){
-                            return SponsorImage();
-                          }));
-                          },
-                          child: Center(
-                              child: Text(
-                            'PUBLISH',
-                            style: TextStyle(color: Colors.white),
-                          ))),
-                    ),
-                  ),
+              height: 25.h,
+            ),
+            Center(
+              child: Container(
+                height: 30.h,
+                width: 250.w,
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 56, 170, 215),
+                    borderRadius: BorderRadius.circular(4)),
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return SponsorImage();
+                      }));
+                    },
+                    child: Center(
+                        child: Text(
+                      'PUBLISH',
+                      style: TextStyle(color: Colors.white),
+                    ))),
+              ),
+            ),
           ],
         )),
       ),
@@ -158,9 +155,9 @@ class CouponImage extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-            fontSize: 10.sp,
-            color: Color.fromARGB(255, 110, 110, 110),
-         ),
+          fontSize: 10.sp,
+          color: Color.fromARGB(255, 110, 110, 110),
+        ),
       ),
     );
   }
