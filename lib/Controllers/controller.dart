@@ -30,4 +30,6 @@ class AuthController extends GetxController {
   TextEditingController latitudeController = TextEditingController();
   TextEditingController longitudeController = TextEditingController();
   TextEditingController livedeadController = TextEditingController();
+  TextEditingController monii = TextEditingController();
+
 }
