@@ -20,6 +20,8 @@ class CreateEvent extends StatefulWidget {
 class _CreateEventState extends State<CreateEvent> {
   final format = DateFormat("yyyy-MM-dd");
 
+  Location location = Location.Yes;
+
   @override
   Widget build(BuildContext context) {
     AuthController authController = Get.put(AuthController());
@@ -300,19 +302,29 @@ class _CreateEventState extends State<CreateEvent> {
                       Row(
                         children: [
                           Radio(
-                              value: 0,
-                              groupValue: 'null',
-                              onChanged: (index) {}),
-                          Text('Yes')
+                              value: Location.Yes,
+                              groupValue: location,
+                              onChanged: (value) {
+                                setState(() {
+                                  location = value!;
+                                  authController.radiobutton.value = "Yes";
+                                });
+                              }),
+                          const Text('Yes')
                         ],
                       ),
                       Row(
                         children: [
                           Radio(
-                              value: 0,
-                              groupValue: 'null',
-                              onChanged: (index) {}),
-                          Text('No')
+                              value: Location.No,
+                              groupValue: location,
+                              onChanged: (value) {
+                                setState(() {
+                                  location = value!;
+                                  authController.radiobutton.value = "No";
+                                });
+                              }),
+                          const Text('No')
                         ],
                       ),
                     ],
@@ -331,7 +343,7 @@ class _CreateEventState extends State<CreateEvent> {
                     children: [
                       Expanded(
                         child: TextFormField(
-                          controller: authController.generalController,
+                          controller: authController.earlybirdeconomyController,
                           decoration: InputDecoration(
                               contentPadding: EdgeInsets.only(left: 15),
                               hintText: "\$0000",
@@ -343,7 +355,8 @@ class _CreateEventState extends State<CreateEvent> {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            controller: authController.seats1Controller,
+                            controller:
+                                authController.erlybrdEcnmySeatController,
                             decoration: InputDecoration(
                                 hintText: "2",
                                 hintStyle: TextStyle(fontSize: 10.sp)),
@@ -366,7 +379,7 @@ class _CreateEventState extends State<CreateEvent> {
                     children: [
                       Expanded(
                         child: TextFormField(
-                          controller: authController.vipController,
+                          controller: authController.earlybirdVipController,
                           decoration: InputDecoration(
                               contentPadding: EdgeInsets.only(left: 15),
                               hintText: "\$0000",
@@ -378,7 +391,7 @@ class _CreateEventState extends State<CreateEvent> {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            controller: authController.seats2Controller,
+                            controller: authController.erlybrdVipseatController,
                             decoration: InputDecoration(
                                 hintText: "2",
                                 hintStyle: TextStyle(fontSize: 10.sp)),
@@ -401,7 +414,7 @@ class _CreateEventState extends State<CreateEvent> {
                     children: [
                       Expanded(
                         child: TextFormField(
-                          controller: authController.generalpriceController,
+                          controller: authController.economypriceController,
                           decoration: InputDecoration(
                               contentPadding: EdgeInsets.only(left: 15),
                               hintText: "\$0000",
@@ -413,7 +426,7 @@ class _CreateEventState extends State<CreateEvent> {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            controller: authController.seats3Controller,
+                            controller: authController.economyseatController,
                             decoration: InputDecoration(
                                 hintText: "2",
                                 hintStyle: TextStyle(fontSize: 10.sp)),
@@ -448,7 +461,7 @@ class _CreateEventState extends State<CreateEvent> {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            controller: authController.seats4Controller,
+                            controller: authController.VipSeatController,
                             decoration: InputDecoration(
                                 hintText: "2",
                                 hintStyle: TextStyle(fontSize: 10.sp)),
@@ -651,6 +664,37 @@ class _CreateEventState extends State<CreateEvent> {
                           borderRadius: BorderRadius.circular(4)),
                       child: TextButton(
                           onPressed: () {
+                            authController.addfirebase(
+                              authController.eventtitleController.text,
+                              authController.descriptionController.text,
+                              authController.eventcategoryController.text,
+                              authController.eventaddress.text,
+                              authController.starttimeController.text,
+                              authController.startdateController.text,
+                              authController.endtimeController.text,
+                              authController.enddateController.text,
+                              authController.earlybirdeconomyController.text,
+                              authController.erlybrdEcnmySeatController.text,
+                              authController.economypriceController.text,
+                              authController.economyseatController.text,
+                              authController.vippriceController.text,
+                              authController.VipSeatController.text,
+                              authController.earlybirdVipController.text,
+                              authController.erlybrdVipseatController.text,
+                              authController.earlybirddateController.text,
+                              authController.countryController.text,
+                              authController.stateController.text,
+                              authController.cityController.text,
+                              authController.cityController.text,
+                              authController.websiteController.text,
+                              authController.emailController.text,
+                              authController.eventtypeController.text,
+                              authController.phoneController.text,
+                              authController.descriptionController.text,
+                              authController.latitudeController.text,
+                              authController.longitudeController.text,
+                              authController.livedeadController.text,
+                            );
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (_) {
                               return CouponImage();
@@ -692,3 +736,5 @@ class _CreateEventState extends State<CreateEvent> {
     );
   }
 }
+
+enum Location { Yes, No }

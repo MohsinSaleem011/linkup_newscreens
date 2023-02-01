@@ -1,6 +1,14 @@
+import 'package:datetime_picker_formfield_new/datetime_picker_formfield_new.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../Controllers/controller.dart';
 import 'SponsorImage.dart';
 
 class CouponImage extends StatelessWidget {
@@ -8,6 +16,9 @@ class CouponImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
+    final format = DateFormat("yyyy-MM-dd");
+
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
@@ -47,81 +58,136 @@ class CouponImage extends StatelessWidget {
               ),
             ),
             largetext('Ticket (Coupon Select)'),
-            SizedBox(
-              height: 6.h,
-            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                smalltext('Select'),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Icon(
-                    Icons.arrow_drop_down,
-                    color: Color.fromARGB(255, 56, 170, 215),
-                    size: 30,
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: TextFormField(
+                      controller: authController.ticketController,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(left: 15),
+                          hintText: "Select",
+                          hintStyle: TextStyle(fontSize: 10.sp)),
+                    ),
                   ),
-                )
+                ),
+                Expanded(
+                    child: Icon(
+                  Icons.arrow_drop_down,
+                  color: Color.fromARGB(255, 56, 170, 215),
+                ))
               ],
             ),
             SizedBox(
               height: 15.h,
             ),
             largetext('Title (Coupon Title)'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.titleController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Title",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('Title'),
             SizedBox(
               height: 15.h,
             ),
             largetext('Description (Coupon Description)'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.descriptionController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Description",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('Description'),
             SizedBox(
               height: 50.h,
             ),
             largetext('Code (Coupon Code)'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.codeController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "12345789",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('12345789'),
             SizedBox(
               height: 15.h,
             ),
             largetext('Discount Type (Coupon Type)'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.discounttypeController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Type",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('Type'),
             SizedBox(
               height: 15.h,
             ),
             largetext('Discount (Coupon Discount)'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.discountController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "0000",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('0000'),
             SizedBox(
               height: 15.h,
             ),
             largetext('Expiry Date (Coupon Title)'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15,right: 15),
+              child: DateTimeField(
+                controller: authController.expirydateController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Date",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+                format: format,
+                onShowPicker: (context, currentValue) {
+                  return showDatePicker(
+                      context: context,
+                      firstDate: DateTime(1900),
+                      initialDate: currentValue ?? DateTime.now(),
+                      lastDate: DateTime(2100));
+                },
+              ),
             ),
-            smalltext('Date'),
             SizedBox(
               height: 15.h,
             ),
             largetext('Status live/dead'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.statusController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Live",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('Live'),
             SizedBox(
-              height: 25.h,
+              height: 30.h,
             ),
             Center(
               child: Container(
@@ -142,6 +208,9 @@ class CouponImage extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ))),
               ),
+            ),
+            SizedBox(
+              height: 20.h,
             ),
           ],
         )),

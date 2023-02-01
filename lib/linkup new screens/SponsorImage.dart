@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '../Controllers/controller.dart';
 import 'BottomNavigationScreen.dart';
 
 class SponsorImage extends StatelessWidget {
@@ -11,14 +10,16 @@ class SponsorImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
+
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
       builder: (context, child) => Scaffold(
         body: SafeArea(
-          child: ListView(
-            children: [
-              Container(
+            child: ListView(
+          children: [
+            Container(
               height: 300,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -28,7 +29,7 @@ class SponsorImage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                  "Sponsor Image",
+                    "Sponsor Image",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 16.sp,
@@ -50,71 +51,99 @@ class SponsorImage extends StatelessWidget {
               ),
             ),
             largetext('Event'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.eventimageController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Select",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('Select'),
             SizedBox(
               height: 15.h,
             ),
             largetext('Name'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.nameimageController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Title",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('Title'),
             SizedBox(
               height: 15.h,
             ),
             largetext('Description'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.descriptionimageController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Description",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('Description'),
             SizedBox(
               height: 50.h,
             ),
             largetext('Status live/dead'),
-            SizedBox(
-              height: 6.h,
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: TextFormField(
+                controller: authController.statusimageController,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 15),
+                    hintText: "Live",
+                    hintStyle: TextStyle(fontSize: 10.sp)),
+              ),
             ),
-            smalltext('Live'),
             SizedBox(
               height: 150.h,
             ),
-             Center(
-                    child: Container(
-                      height: 30.h,
-                      width: 250.w,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 56, 170, 215),
-                          borderRadius: BorderRadius.circular(4)),
-                      child: TextButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_){
-                            return NavigationScreen();
-                          }));
-                          },
-                          child: Center(
-                              child: Text(
-                            'PUBLISH EVENT',
-                            style: TextStyle(color: Colors.white),
-                          ))),
-                    ),
-                  ),
-            ],
-          )),
+            Center(
+              child: Container(
+                height: 30.h,
+                width: 250.w,
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 56, 170, 215),
+                    borderRadius: BorderRadius.circular(4)),
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return NavigationScreen();
+                      }));
+                    },
+                    child: Center(
+                        child: Text(
+                      'PUBLISH EVENT',
+                      style: TextStyle(color: Colors.white),
+                    ))),
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+          ],
+        )),
       ),
     );
   }
+
   Padding smalltext(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 30),
       child: Text(
         title,
         style: TextStyle(
-            fontSize: 10.sp,
-            color: Color.fromARGB(255, 110, 110, 110),
-         ),
+          fontSize: 10.sp,
+          color: Color.fromARGB(255, 110, 110, 110),
+        ),
       ),
     );
   }

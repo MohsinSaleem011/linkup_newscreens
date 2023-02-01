@@ -42,6 +42,9 @@ dependencies:
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
   datetime_picker_formfield_new: ^2.0.0
+  json_annotation: ^4.5.0
+  cloud_firestore: 
+  firebase_storage: ^11.0.10
 
 dev_dependencies:
   flutter_test:
