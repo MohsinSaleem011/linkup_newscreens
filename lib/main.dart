@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'linkup new screens/Create Event.dart';
 import 'linkup new screens/Createopenevents.dart';
 
 void main()async {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CreateEvent(),
+      home: CreateOpenEvent(),
     );
   }
 }

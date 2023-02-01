@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class AuthController extends GetxController {
   TextEditingController eventtitleController = TextEditingController();
-  TextEditingController discriptionController = TextEditingController();
   TextEditingController eventcategoryController = TextEditingController();
   TextEditingController eventaddress = TextEditingController();
   TextEditingController eventtypeController = TextEditingController();
@@ -45,6 +45,8 @@ class AuthController extends GetxController {
   TextEditingController descriptionimageController = TextEditingController();
   TextEditingController statusimageController = TextEditingController();
   Rx<String> radiobutton = ''.obs;
+  final globalkey = GlobalKey<FormState>().obs;
+
 
   addfirebase(
       String title,
@@ -110,4 +112,5 @@ class AuthController extends GetxController {
       'livedead': livedeadController.text
     });
   }
+ 
 }

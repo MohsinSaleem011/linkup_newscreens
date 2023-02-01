@@ -11,7 +11,6 @@ class SponsorImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthController authController = Get.put(AuthController());
-
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return ScreenUtilInit(
@@ -22,9 +21,11 @@ class SponsorImage extends StatelessWidget {
             Container(
               height: 300,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/Group 163959 (4).png'),
-                      fit: BoxFit.cover)),
+                image: DecorationImage(
+                  image: AssetImage('assets/images/Group 163959 (4).png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

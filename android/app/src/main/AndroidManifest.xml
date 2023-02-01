@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.linkup_newscreens">
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
    <application
         android:label="linkup_newscreens"
         android:name="${applicationName}"

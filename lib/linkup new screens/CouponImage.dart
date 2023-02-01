@@ -1,13 +1,8 @@
 import 'package:datetime_picker_formfield_new/datetime_picker_formfield_new.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../Controllers/controller.dart';
 import 'SponsorImage.dart';
 
